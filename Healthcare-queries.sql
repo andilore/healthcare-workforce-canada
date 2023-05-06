@@ -980,3 +980,202 @@ and the ratio of (total count of professionals to the population) (r value = 0.3
 If we look at just the territories, there is a strong linear, positive relationship between the number of available programs in a province or territory, 
 and the ratio of (total count of professionals to the population), as the r-value = 0.999.  That is, the more training programs available in a territory, 
 the greater the ratio of (total count of professionals to the population) */
+
+
+/* Which province/territory has the highest proportion of female healthcare professionals in 2021 */
+
+SELECT t2.prov_terr AS prov_terr,
+	(female_prof_count / total_prof_count) AS prop_female_prof
+FROM
+	(SELECT CASE WHEN (SUM(t1.total_prof_count) > 0)
+				THEN 'Alberta'
+				END AS prov_terr,
+		SUM(t1.female_prof_count) AS female_prof_count,
+		SUM(t1.total_prof_count) AS total_prof_count
+	FROM
+		(SELECT type_of_prof, 
+			((female_pct / 100) * count) AS female_prof_count,
+			count as total_prof_count
+		FROM alberta_profs
+		WHERE Year='2021' AND female_pct IS NOT NULL) AS t1) AS t2
+UNION ALL
+SELECT t2.prov_terr AS prov_terr,
+	(female_prof_count / total_prof_count) AS prop_female_prof
+FROM
+	(SELECT CASE WHEN (SUM(t1.total_prof_count) > 0)
+				THEN 'British Columbia'
+				END AS prov_terr,
+		SUM(t1.female_prof_count) AS female_prof_count,
+		SUM(t1.total_prof_count) AS total_prof_count
+	FROM
+		(SELECT type_of_prof, 
+			((female_pct / 100) * count) AS female_prof_count,
+			count as total_prof_count
+		FROM bc_profs
+		WHERE Year='2021' AND female_pct IS NOT NULL) AS t1) AS t2
+UNION ALL
+SELECT t2.prov_terr AS prov_terr,
+	(female_prof_count / total_prof_count) AS prop_female_prof
+FROM
+	(SELECT CASE WHEN (SUM(t1.total_prof_count) > 0)
+				THEN 'Manitoba'
+				END AS prov_terr,
+		SUM(t1.female_prof_count) AS female_prof_count,
+		SUM(t1.total_prof_count) AS total_prof_count
+	FROM
+		(SELECT type_of_prof, 
+			((female_pct / 100) * count) AS female_prof_count,
+			count as total_prof_count
+		FROM manitoba_profs
+		WHERE Year='2021' AND female_pct IS NOT NULL) AS t1) AS t2
+UNION ALL
+SELECT t2.prov_terr AS prov_terr,
+	(female_prof_count / total_prof_count) AS prop_female_prof
+FROM
+	(SELECT CASE WHEN (SUM(t1.total_prof_count) > 0)
+				THEN 'New Brunswick'
+				END AS prov_terr,
+		SUM(t1.female_prof_count) AS female_prof_count,
+		SUM(t1.total_prof_count) AS total_prof_count
+	FROM
+		(SELECT type_of_prof, 
+			((female_pct / 100) * count) AS female_prof_count,
+			count as total_prof_count
+		FROM nb_profs
+		WHERE Year='2021' AND female_pct IS NOT NULL) AS t1) AS t2
+UNION ALL
+SELECT t2.prov_terr AS prov_terr,
+	(female_prof_count / total_prof_count) AS prop_female_prof
+FROM
+	(SELECT CASE WHEN (SUM(t1.total_prof_count) > 0)
+				THEN 'Newfoundland and Labrador'
+				END AS prov_terr,
+		SUM(t1.female_prof_count) AS female_prof_count,
+		SUM(t1.total_prof_count) AS total_prof_count
+	FROM
+		(SELECT type_of_prof, 
+			((female_pct / 100) * count) AS female_prof_count,
+			count as total_prof_count
+		FROM nfld_profs
+		WHERE Year='2021' AND female_pct IS NOT NULL) AS t1) AS t2
+UNION ALL
+SELECT t2.prov_terr AS prov_terr,
+	(female_prof_count / total_prof_count) AS prop_female_prof
+FROM
+	(SELECT CASE WHEN (SUM(t1.total_prof_count) > 0)
+				THEN 'Nova Scotia'
+				END AS prov_terr,
+		SUM(t1.female_prof_count) AS female_prof_count,
+		SUM(t1.total_prof_count) AS total_prof_count
+	FROM
+		(SELECT type_of_prof, 
+			((female_pct / 100) * count) AS female_prof_count,
+			count as total_prof_count
+		FROM ns_profs
+		WHERE Year='2021' AND female_pct IS NOT NULL) AS t1) AS t2
+UNION ALL
+SELECT t2.prov_terr AS prov_terr,
+	(female_prof_count / total_prof_count) AS prop_female_prof
+FROM
+	(SELECT CASE WHEN (SUM(t1.total_prof_count) > 0)
+				THEN 'Nunavut'
+				END AS prov_terr,
+		SUM(t1.female_prof_count) AS female_prof_count,
+		SUM(t1.total_prof_count) AS total_prof_count
+	FROM
+		(SELECT type_of_prof, 
+			((female_pct / 100) * count) AS female_prof_count,
+			count as total_prof_count
+		FROM nunavut_profs
+		WHERE Year='2021' AND female_pct IS NOT NULL) AS t1) AS t2
+UNION ALL
+SELECT t2.prov_terr AS prov_terr,
+	(female_prof_count / total_prof_count) AS prop_female_prof
+FROM
+	(SELECT CASE WHEN (SUM(t1.total_prof_count) > 0)
+				THEN 'Northwest Territories'
+				END AS prov_terr,
+		SUM(t1.female_prof_count) AS female_prof_count,
+		SUM(t1.total_prof_count) AS total_prof_count
+	FROM
+		(SELECT type_of_prof, 
+			((female_pct / 100) * count) AS female_prof_count,
+			count as total_prof_count
+		FROM nwt_profs
+		WHERE Year='2021' AND female_pct IS NOT NULL) AS t1) AS t2
+UNION ALL
+SELECT t2.prov_terr AS prov_terr,
+	(female_prof_count / total_prof_count) AS prop_female_prof
+FROM
+	(SELECT CASE WHEN (SUM(t1.total_prof_count) > 0)
+				THEN 'Ontario'
+				END AS prov_terr,
+		SUM(t1.female_prof_count) AS female_prof_count,
+		SUM(t1.total_prof_count) AS total_prof_count
+	FROM
+		(SELECT type_of_prof, 
+			((female_pct / 100) * count) AS female_prof_count,
+			count as total_prof_count
+		FROM ont_profs
+		WHERE Year='2021' AND female_pct IS NOT NULL) AS t1) AS t2
+UNION ALL
+SELECT t2.prov_terr AS prov_terr,
+	(female_prof_count / total_prof_count) AS prop_female_prof
+FROM
+	(SELECT CASE WHEN (SUM(t1.total_prof_count) > 0)
+				THEN 'Prince Edward Island'
+				END AS prov_terr,
+		SUM(t1.female_prof_count) AS female_prof_count,
+		SUM(t1.total_prof_count) AS total_prof_count
+	FROM
+		(SELECT type_of_prof, 
+			((female_pct / 100) * count) AS female_prof_count,
+			count as total_prof_count
+		FROM pei_profs
+		WHERE Year='2021' AND female_pct IS NOT NULL) AS t1) AS t2
+UNION ALL
+SELECT t2.prov_terr AS prov_terr,
+	(female_prof_count / total_prof_count) AS prop_female_prof
+FROM
+	(SELECT CASE WHEN (SUM(t1.total_prof_count) > 0)
+				THEN 'Quebec'
+				END AS prov_terr,
+		SUM(t1.female_prof_count) AS female_prof_count,
+		SUM(t1.total_prof_count) AS total_prof_count
+	FROM
+		(SELECT type_of_prof, 
+			((female_pct / 100) * count) AS female_prof_count,
+			count as total_prof_count
+		FROM quebec_profs
+		WHERE Year='2021' AND female_pct IS NOT NULL) AS t1) AS t2
+UNION ALL
+SELECT t2.prov_terr AS prov_terr,
+	(female_prof_count / total_prof_count) AS prop_female_prof
+FROM
+	(SELECT CASE WHEN (SUM(t1.total_prof_count) > 0)
+				THEN 'Saskatchewan'
+				END AS prov_terr,
+		SUM(t1.female_prof_count) AS female_prof_count,
+		SUM(t1.total_prof_count) AS total_prof_count
+	FROM
+		(SELECT type_of_prof, 
+			((female_pct / 100) * count) AS female_prof_count,
+			count as total_prof_count
+		FROM sask_profs
+		WHERE Year='2021' AND female_pct IS NOT NULL) AS t1) AS t2
+UNION ALL
+SELECT t2.prov_terr AS prov_terr,
+	(female_prof_count / total_prof_count) AS prop_female_prof
+FROM
+	(SELECT CASE WHEN (SUM(t1.total_prof_count) > 0)
+				THEN 'Yukon'
+				END AS prov_terr,
+		SUM(t1.female_prof_count) AS female_prof_count,
+		SUM(t1.total_prof_count) AS total_prof_count
+	FROM
+		(SELECT type_of_prof, 
+			((female_pct / 100) * count) AS female_prof_count,
+			count as total_prof_count
+		FROM yukon_profs
+		WHERE Year='2021' AND female_pct IS NOT NULL) AS t1) AS t2
+ORDER BY 2 DESC
