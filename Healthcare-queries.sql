@@ -509,3 +509,176 @@ FROM num_profs_all_provsterrs
 WHERE count_nunavut IS NOT NULL
 ORDER BY 1 DESC
 LIMIT 1
+
+
+/* Which province/territory has the highest ratio of healthcare professionals to population in 2021? */
+
+(SELECT ab.*, p."2021" AS pop, CAST((ab.total_count_2021 / p."2021") AS DECIMAL(8,5)) AS ratio_total_count_to_pop
+FROM
+	(SELECT 
+		CASE WHEN (type_of_prof IS NOT NULL) 
+			THEN 'Alberta'
+			END AS prov_terr,
+		SUM(count) AS total_count_2021
+	FROM alberta_profs
+	WHERE Year = '2021' AND type_of_prof NOT IN ('Regulated nurses','Physicians')
+	GROUP BY 1) AS ab
+JOIN population p
+ON p.Province_Territory = ab.prov_terr)
+UNION ALL
+(SELECT bc.*, p."2021" AS pop, CAST((bc.total_count_2021 / p."2021") AS DECIMAL(8,5)) AS ratio_total_count_to_pop
+FROM
+	(SELECT 
+		CASE WHEN (type_of_prof IS NOT NULL) 
+			THEN 'British Columbia'
+			END AS prov_terr,
+		SUM(count) AS total_count_2021
+	FROM bc_profs
+	WHERE Year = '2021' AND type_of_prof NOT IN ('Regulated nurses','Physicians')
+	GROUP BY 1) AS bc
+JOIN population p
+ON p.Province_Territory = bc.prov_terr)
+UNION ALL
+(SELECT mb.*, p."2021" AS pop, CAST((mb.total_count_2021 / p."2021") AS DECIMAL(8,5)) AS ratio_total_count_to_pop
+FROM
+	(SELECT 
+		CASE WHEN (type_of_prof IS NOT NULL) 
+			THEN 'Manitoba'
+			END AS prov_terr,
+		SUM(count) AS total_count_2021
+	FROM manitoba_profs
+	WHERE Year = '2021' AND type_of_prof NOT IN ('Regulated nurses','Physicians')
+	GROUP BY 1) AS mb
+JOIN population p
+ON p.Province_Territory = mb.prov_terr)
+UNION ALL
+(SELECT nb.*, p."2021" AS pop, CAST((nb.total_count_2021 / p."2021") AS DECIMAL(8,5)) AS ratio_total_count_to_pop
+FROM
+	(SELECT 
+		CASE WHEN (type_of_prof IS NOT NULL) 
+			THEN 'New Brunswick'
+			END AS prov_terr,
+		SUM(count) AS total_count_2021
+	FROM nb_profs
+	WHERE Year = '2021' AND type_of_prof NOT IN ('Regulated nurses','Physicians')
+	GROUP BY 1) AS nb
+JOIN population p
+ON p.Province_Territory = nb.prov_terr)
+UNION ALL
+(SELECT nfld.*, p."2021" AS pop, CAST((nfld.total_count_2021 / p."2021") AS DECIMAL(8,5)) AS ratio_total_count_to_pop
+FROM
+	(SELECT 
+		CASE WHEN (type_of_prof IS NOT NULL) 
+			THEN 'Newfoundland and Labrador'
+			END AS prov_terr,
+		SUM(count) AS total_count_2021
+	FROM nfld_profs
+	WHERE Year = '2021' AND type_of_prof NOT IN ('Regulated nurses','Physicians')
+	GROUP BY 1) AS nfld
+JOIN population p
+ON p.Province_Territory = nfld.prov_terr)
+UNION ALL
+(SELECT ns.*, p."2021" AS pop, CAST((ns.total_count_2021 / p."2021") AS DECIMAL(8,5)) AS ratio_total_count_to_pop
+FROM
+	(SELECT 
+		CASE WHEN (type_of_prof IS NOT NULL) 
+			THEN 'Nova Scotia'
+			END AS prov_terr,
+		SUM(count) AS total_count_2021
+	FROM ns_profs
+	WHERE Year = '2021' AND type_of_prof NOT IN ('Regulated nurses','Physicians')
+	GROUP BY 1) AS ns
+JOIN population p
+ON p.Province_Territory = ns.prov_terr)
+UNION ALL
+(SELECT nvt.*, p."2021" AS pop, CAST((nvt.total_count_2021 / p."2021") AS DECIMAL(8,5)) AS ratio_total_count_to_pop
+FROM
+	(SELECT 
+		CASE WHEN (type_of_prof IS NOT NULL) 
+			THEN 'Nunavut'
+			END AS prov_terr,
+		SUM(count) AS total_count_2021
+	FROM nunavut_profs
+	WHERE Year = '2021' AND type_of_prof NOT IN ('Regulated nurses','Physicians')
+	GROUP BY 1) AS nvt
+JOIN population p
+ON p.Province_Territory = nvt.prov_terr)
+UNION ALL
+(SELECT nwt.*, p."2021" AS pop, CAST((nwt.total_count_2021 / p."2021") AS DECIMAL(8,5)) AS ratio_total_count_to_pop
+FROM
+	(SELECT 
+		CASE WHEN (type_of_prof IS NOT NULL) 
+			THEN 'Northwest Territories'
+			END AS prov_terr,
+		SUM(count) AS total_count_2021
+	FROM nwt_profs
+	WHERE Year = '2021' AND type_of_prof NOT IN ('Regulated nurses','Physicians')
+	GROUP BY 1) AS nwt
+JOIN population p
+ON p.Province_Territory = nwt.prov_terr)
+UNION ALL
+(SELECT ont.*, p."2021" AS pop, CAST((ont.total_count_2021 / p."2021") AS DECIMAL(8,5)) AS ratio_total_count_to_pop
+FROM
+	(SELECT 
+		CASE WHEN (type_of_prof IS NOT NULL) 
+			THEN 'Ontario'
+			END AS prov_terr,
+		SUM(count) AS total_count_2021
+	FROM ont_profs
+	WHERE Year = '2021' AND type_of_prof NOT IN ('Regulated nurses','Physicians')
+	GROUP BY 1) AS ont
+JOIN population p
+ON p.Province_Territory = ont.prov_terr)
+UNION ALL
+(SELECT pei.*, p."2021" AS pop, CAST((pei.total_count_2021 / p."2021") AS DECIMAL(8,5)) AS ratio_total_count_to_pop
+FROM
+	(SELECT 
+		CASE WHEN (type_of_prof IS NOT NULL) 
+			THEN 'Prince Edward Island'
+			END AS prov_terr,
+		SUM(count) AS total_count_2021
+	FROM pei_profs
+	WHERE Year = '2021' AND type_of_prof NOT IN ('Regulated nurses','Physicians')
+	GROUP BY 1) AS pei
+JOIN population p
+ON p.Province_Territory = pei.prov_terr)
+UNION ALL
+(SELECT qb.*, p."2021" AS pop, CAST((qb.total_count_2021 / p."2021") AS DECIMAL(8,5)) AS ratio_total_count_to_pop
+FROM
+	(SELECT 
+		CASE WHEN (type_of_prof IS NOT NULL) 
+			THEN 'Quebec'
+			END AS prov_terr,
+		SUM(count) AS total_count_2021
+	FROM quebec_profs
+	WHERE Year = '2021' AND type_of_prof NOT IN ('Regulated nurses','Physicians')
+	GROUP BY 1) AS qb
+JOIN population p
+ON p.Province_Territory = qb.prov_terr)
+UNION ALL
+(SELECT sk.*, p."2021" AS pop, CAST((sk.total_count_2021 / p."2021") AS DECIMAL(8,5)) AS ratio_total_count_to_pop
+FROM
+	(SELECT 
+		CASE WHEN (type_of_prof IS NOT NULL) 
+			THEN 'Saskatchewan'
+			END AS prov_terr,
+		SUM(count) AS total_count_2021
+	FROM sask_profs
+	WHERE Year = '2021' AND type_of_prof NOT IN ('Regulated nurses','Physicians')
+	GROUP BY 1) AS sk
+JOIN population p
+ON p.Province_Territory = sk.prov_terr)
+ UNION ALL
+(SELECT yk.*, p."2021" AS pop, CAST((yk.total_count_2021 / p."2021") AS DECIMAL(8,5)) AS ratio_total_count_to_pop
+FROM
+	(SELECT 
+		CASE WHEN (type_of_prof IS NOT NULL) 
+			THEN 'Yukon'
+			END AS prov_terr,
+		SUM(count) AS total_count_2021
+	FROM yukon_profs
+	WHERE Year = '2021' AND type_of_prof NOT IN ('Regulated nurses','Physicians')
+	GROUP BY 1) AS yk
+JOIN population p
+ON p.Province_Territory = yk.prov_terr)
+ORDER BY 4 DESC
