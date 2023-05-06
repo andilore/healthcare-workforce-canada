@@ -967,4 +967,16 @@ RIGHT JOIN
 ON t1.prov_terr = t2.prov_terr
 ORDER BY 2 DESC
 
+/* upon graphing in tableau, there seems to be a moderate linear, NEGATIVE relationship between the number of available programs in a province or territory, 
+and the ratio of (total count of professionals to the population), ONCE WE EXCLUDE THE OUTLIERS of NWT, Nunavut, and BC (r value = 0.4786).  That is, as the number of available
+programs in a province or territory increases, the ratio of (total count of professionals to the population) decreases (again, this relationship is moderate
+in strength).   
+However, if we include the outliers of NWT, Nunavut, and BC,  the r-value is 0.4526, so the relationship doesn't change too much.
+Perhaps it makes more sense to investigate this data with the provinces SEPARATE from the territories, and vice versa.
 
+If we look at just the provinces, and exclude the outlier of BC, we can see there is still a moderate linear, negative relationship between the number of available programs in a province or territory, 
+and the ratio of (total count of professionals to the population) (r value = 0.3839).
+
+If we look at just the territories, there is a strong linear, positive relationship between the number of available programs in a province or territory, 
+and the ratio of (total count of professionals to the population), as the r-value = 0.999.  That is, the more training programs available in a territory, 
+the greater the ratio of (total count of professionals to the population) */
