@@ -428,3 +428,84 @@ JOIN
 		 GROUP BY 1) AS yk2
 ON yk1.prov_terr = yk2.prov_terr)
 ORDER BY 2 DESC
+
+
+/* In 2021, which healthcare profession has the highest number of professionals in each province/territory? */
+
+SELECT count_nfld, type_of_prof
+FROM num_profs_all_provsterrs
+WHERE count_nfld IS NOT NULL
+ORDER BY 1 DESC
+LIMIT 1
+
+SELECT count_pei, type_of_prof
+FROM num_profs_all_provsterrs
+WHERE count_pei IS NOT NULL
+ORDER BY 1 DESC
+LIMIT 1
+
+SELECT count_ns, type_of_prof
+FROM num_profs_all_provsterrs
+WHERE count_ns IS NOT NULL
+ORDER BY 1 DESC
+LIMIT 1
+
+SELECT count_nb, type_of_prof
+FROM num_profs_all_provsterrs
+WHERE count_nb IS NOT NULL
+ORDER BY 1 DESC
+LIMIT 1
+
+SELECT count_quebec, type_of_prof
+FROM num_profs_all_provsterrs
+WHERE count_quebec IS NOT NULL
+ORDER BY 1 DESC
+LIMIT 1
+
+SELECT count_ontario, type_of_prof
+FROM num_profs_all_provsterrs
+WHERE count_ontario IS NOT NULL
+ORDER BY 1 DESC
+LIMIT 1
+
+SELECT count_mb, type_of_prof
+FROM num_profs_all_provsterrs
+WHERE count_mb IS NOT NULL
+ORDER BY 1 DESC
+LIMIT 1
+
+SELECT count_sask, type_of_prof
+FROM num_profs_all_provsterrs
+WHERE count_sask IS NOT NULL
+ORDER BY 1 DESC
+LIMIT 1
+
+SELECT count_alb, type_of_prof
+FROM num_profs_all_provsterrs
+WHERE count_alb IS NOT NULL
+ORDER BY 1 DESC
+LIMIT 1
+
+SELECT count_bc, type_of_prof
+FROM num_profs_all_provsterrs
+WHERE count_bc IS NOT NULL
+ORDER BY 1 DESC
+LIMIT 1
+
+SELECT count_yukon, type_of_prof
+FROM num_profs_all_provsterrs
+WHERE count_yukon IS NOT NULL
+ORDER BY 1 DESC
+LIMIT 1
+
+SELECT count_nwt, type_of_prof
+FROM num_profs_all_provsterrs
+WHERE count_nwt IS NOT NULL
+ORDER BY 1 DESC
+LIMIT 1
+
+SELECT count_nunavut, type_of_prof
+FROM num_profs_all_provsterrs
+WHERE count_nunavut IS NOT NULL
+ORDER BY 1 DESC
+LIMIT 1
